@@ -1,4 +1,4 @@
-from logging.manager import DataManagerInterface
+from datamanager.manager import DataManagerInterface
 import json
 import os
 
@@ -24,7 +24,19 @@ class JsonDataManager(DataManagerInterface):
         for user in users:
             if user['id'] == int(user_id):
                 return user['movies']
-        return "Movie Not Found"
+        return "User ID Not Found"
+
+    def add_new_user(self, name):
+        data = self.read_file()
+        new_user_dict = {
+            "id": data[-1]['id'] + 1,
+            "name": name,
+            "movies": []
+        }
+        data.append(new_user_dict)
+        with open(self.filename, 'w') as fileobj:
+            json.dump(data, fileobj)
+
 
 
 
