@@ -18,19 +18,19 @@
         <div class="col-md-6">
             <form action="/users/{{user_id}}/update_movie/{{movie_id}}" method="POST">
                 <div class="form-floating mb-3">
-                    <input type="text" id="title" name="title" value="{{ movie['name'] }}" class="form-control" id="floatingInput">
+                    <input type="text" id="title" name="title" value="{{ movie.title }}" class="form-control" id="floatingInput">
                     <label for="title" class="form-label">Title:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" id="director" name="director" value="{{ movie['director'] }}" class="form-control">
+                    <input type="text" id="director" name="director" value="{{ movie.director }}" class="form-control">
                     <label for="director" class="form-label">Director:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" id="year" name="year" value="{{ movie['year'] }}" class="form-control">
+                    <input type="text" id="year" name="year" value="{{ movie.year }}" class="form-control">
                     <label for="year" class="form-label">Year:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" id="rating" name="rating" value="{{ movie['rating'] }}" class="form-control">
+                    <input type="text" id="rating" name="rating" value="{{ movie.rating }}" class="form-control">
                     <label for="rating" class="form-label">Rating:</label>
                 </div>
                 <div class="text-center">

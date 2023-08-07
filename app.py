@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, url_for, redirect
-from datamanager.JsonManager import JsonDataManager
+from datamanager.SQLiteDataManager import SQLiteDataManager
+from api import api  # Importing the API blueprint
 
 app = Flask(__name__)
-data_manager = JsonDataManager('logs\\movie_data.json')
+
+data_manager = SQLiteDataManager('movie_database.db')
+
+app.register_blueprint(api, url_prefix='/api')  # Registering the blueprint
 
 
 @app.errorhandler(404)
@@ -29,6 +33,12 @@ def list_movies(user_id):
     return render_template('movies.html', movies=movies, current_user=user_id)
 
 
+@app.route('/users/<user_id>/list_reviews/<movie_id>', methods=['GET', 'POST'])
+def list_movie_reviews(user_id, movie_id):
+    reviews = data_manager.get_all_movies_reviews(movie_id)
+    return render_template('reviews.html', reviews=reviews)
+
+
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
     if request.method == "POST":
@@ -52,6 +62,15 @@ def add_movie(user_id):
             return render_template('error_page.html', error='Movie Not Found')
 
     return render_template('add_movie.html', user_id=user_id)
+
+
+@app.route('/users/<user_id>/add_review/<movie_id>', methods=['GET', 'POST'])
+def add_review(user_id, movie_id):
+    if request.method == "POST":
+        review_content = request.form.get('new_movie_review')
+        data_manager.add_review(movie_id, review_content)
+        return redirect(url_for('list_movie_reviews', user_id=user_id, movie_id=movie_id))
+    return render_template('add_review.html', user_id=user_id, movie_id=movie_id)
 
 
 @app.route('/users/<user_id>/update_movie/<movie_id>', methods=['GET', 'POST'])
@@ -80,7 +99,7 @@ def update_movie(user_id, movie_id):
 
 @app.route('/users/<user_id>/delete_movie/<movie_id>', methods=['GET', 'POST'])  # Delete Request
 def delete_movie(user_id, movie_id):
-    movie = data_manager.return_one_movie(user_id,movie_id)
+    movie = data_manager.return_one_movie(user_id, movie_id)
     if movie is False:
         return render_template('error_page.html', error="Movie Or User Couldn't Be Found")
     data_manager.delete_movie(int(user_id), int(movie_id))

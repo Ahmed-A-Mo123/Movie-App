@@ -4,6 +4,10 @@ from abc import ABC, abstractmethod
 class DataManagerInterface(ABC):
 
     @abstractmethod
+    def check_if_user_exist(self, user_id):
+        pass
+
+    @abstractmethod
     def get_all_users(self):
         pass
 

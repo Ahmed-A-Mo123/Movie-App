@@ -38,12 +38,12 @@ class JsonDataManager(DataManagerInterface):
 
 
     def get_all_users(self):
-        """Return a list of all users and the movies they watch"""
+        """Returns a list of all users"""
         data = self.read_file()
         return data
 
     def get_user_movies(self, user_id):
-        # Return a list of all movies for a given user
+        """ Returns a list of all movies for a given user"""
         users = self.read_file()
         for user in users:
             if user['id'] == int(user_id):
@@ -51,6 +51,7 @@ class JsonDataManager(DataManagerInterface):
         return "User ID Not Found"
 
     def return_one_movie(self, user_id, movie_id):
+        """Helper function which returns one movie"""
         user_movies = self.get_user_movies(user_id)
         for movie in user_movies:
             if movie['id'] == int(movie_id):
@@ -59,6 +60,7 @@ class JsonDataManager(DataManagerInterface):
         return 'User or Movie Not Found!'
 
     def return_movie_name(self, user_id, movie_id):
+        """This function returns a movie title queried by its movie id"""
         user_movies = self.get_user_movies(user_id)
         if user_movies == "User ID Not Found":
             return False
@@ -68,6 +70,7 @@ class JsonDataManager(DataManagerInterface):
         return False
 
     def add_new_user(self, name):
+        """Adds a new user to the webapp"""
         data = self.read_file()
         new_user_dict = {
             "id": data[-1]['id'] + 1,
@@ -78,6 +81,7 @@ class JsonDataManager(DataManagerInterface):
         self.write_file(data)
 
     def add_movie(self, user_id, movie_name):
+        """Adds a new favourite movie for a user"""
         data = self.read_file()
         movie_api_data = self.movie_api(movie_name)
 
@@ -103,6 +107,7 @@ class JsonDataManager(DataManagerInterface):
         self.write_file(data)
 
     def update_movie(self, user_id, movie_id, new_movie_data):
+        """Updates key information about a movie"""
         data = self.read_file()
         for user in data:
             if user['id'] == int(user_id):
@@ -116,6 +121,7 @@ class JsonDataManager(DataManagerInterface):
         self.write_file(data)
 
     def delete_movie(self, user_id, movie_id):
+        """Removes a movie from a users favourite movie list"""
         data = self.read_file()
         for user in data:
             if user['id'] == int(user_id):
