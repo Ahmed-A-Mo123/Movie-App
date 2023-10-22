@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to MasterFlix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+    <div style="border:black; border-width:5px; border-style:solid width:100px;" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <h1 class="text-center text-black" style="text-align:left; padding-top:50px">Dashboard</h1>
+         <a href="{{ url_for('home') }}"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkFDRYbEhEMDRsUFRAZIB0WLiAdJSgkHCggJh4lIh8eITUyJSkrLkYuHR80ODU4NzItLjIBCgoKDg0NDw4ODysZHxkrNysrKysrKysrKysrNysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALQAtAMBIgACEQEDEQH/xAAZAAEAAwEBAAAAAAAAAAAAAAAABgcIBQP/xAA2EAEAAAUBAwkGBQUAAAAAAAAAAQIDBAUGBxFVEhcxNpOks9HSFjVzdIOxExQhlMEyQVFhgf/EABgBAQEBAQEAAAAAAAAAAAAAAAACAwQB/8QAGxEBAAMBAQEBAAAAAAAAAAAAAAECETETAxL/2gAMAwEAAhEDEQA/AKzAS5QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWPsXxthkr7Jy5GytrqWhSkjLC4pSzwljvm6N8P0Wt7L6e4Di/2dPyFxTY1mIad9l9PcBxf7On5KI2l2tCy1rkrezoUrehQ/C5MlGSEksu+lSjHdCH6dMYhamIyAIAAAAAAAAAAAAAAAetrbV7y5p21rSmq1rubdLLLDfGaP+IA8h3vYrU3BL3sz2K1NwS97Me5KZ7CPeOW+FT+8y4lXbHcFlcRfZKfJ2Fe1luaUkJY1Jd3KjCMy0RvTgzxtW6/ZT6XhUmh2eNq3X7KfS8KkJ+nETAGIAAAAAAAAAAAAAA72geueH+alcF3tA9c8P81KPY60qAOkAAZ42rdfsp9LwqTQ7PG1br9lPpeFSGf04iYAxAAAAAAAAAAAAFj4rZNd5LF2d/LlqEkuWt5J4QjSjGMsJpZY7un/AGrhp3SHVPC/IUPDkF0iJ6rPmZvOM2/Yx83R07srusRnLLIz5SjVlxdWE0ZYUowjNu/t0rRBr+IABSNa21dR0lb2tWtaT3MMjNNCEJJ4S7t0IR/lE+eaz4NcdtDyNu/u7E/FqfaVToytaYlcXPNZ8GuO2h5K11dmZNQ6iu8rSozUZL/kbpJo74w5MkkOn/jjgibTPQASAAAAAAAAAAAANO6Q6p4X5Ch4cjMST2e0HVNlaULS2ynIoWFOWWSX8vSjyZYQ3QhvjJv6IC6WxowZ45ytX8X7rR9Bzlav4v3Wj6BfpDQ4zxzlav4v3Wj6DnK1fxfutH0B6Qm23f3difi1PtKp12M9qjNagp0qeYvPzEllGMZYfhSSbox6f6YQccZ2nZ0AEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z" width="50" height="50" style="position:relative;left:1px; top:-50px;"></a>
+    </div>
+    <div class="container border">
+        <h1>Welcome Back {{current_user.name}}</h1>
+    </div>
+
+
+    <div class="container border mt-2" style="height: 900px;">
+       <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card m-4">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh8w1nKOrY4x8mDg5hOniIkJ6uZ8E3nX4-oQ&usqp=CAU" class="card-img-top" style="width:150px" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">My Movies</h5>
+                <p class="card-text">View And Add Movies To Your Page</p>
+                <a href="{{url_for('list_movies' , user_id= current_user.id)}}" class="btn btn-primary">Take me There</a>
+              </div>
+            </div>
+       </div>
+
+      <div class="col">
+        <div class="card m-4">
+          <img src="data:image/png;base64,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" class="card-img-top" style="width:150px; " alt="feed">
+          <div class="card-body">
+            <h5 class="card-title">My feed</h5>
+            <p class="card-text">Check Out What Others Are Watching</p>
+            <a href="{{url_for('list_users')}}" class="btn btn-primary">Take me There</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 position-relative top-50 start-50 translate-middle">
+          <a href="{{url_for('logout')}}" class="btn btn-primary" > Log Out</a>
+      </div>
+
+    </div>
+
+<h1></h1>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

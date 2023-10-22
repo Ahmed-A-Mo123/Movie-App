@@ -11,10 +11,17 @@
    <div style="border:black; border-width:5px; border-style:solid width:100px;" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
         <h1 class="text-center text-black" style="margin:50px;">Welcome to MasterFlix</h1>
         <a href="{{ url_for('home') }}"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkFDRYbEhEMDRsUFRAZIB0WLiAdJSgkHCggJh4lIh8eITUyJSkrLkYuHR80ODU4NzItLjIBCgoKDg0NDw4ODysZHxkrNysrKysrKysrKysrNysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALQAtAMBIgACEQEDEQH/xAAZAAEAAwEBAAAAAAAAAAAAAAAABgcIBQP/xAA2EAEAAAUBAwkGBQUAAAAAAAAAAQIDBAUGBxFVEhcxNpOks9HSFjVzdIOxExQhlMEyQVFhgf/EABgBAQEBAQEAAAAAAAAAAAAAAAACAwQB/8QAGxEBAAMBAQEBAAAAAAAAAAAAAAECETETAxL/2gAMAwEAAhEDEQA/AKzAS5QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWPsXxthkr7Jy5GytrqWhSkjLC4pSzwljvm6N8P0Wt7L6e4Di/2dPyFxTY1mIad9l9PcBxf7On5KI2l2tCy1rkrezoUrehQ/C5MlGSEksu+lSjHdCH6dMYhamIyAIAAAAAAAAAAAAAAAetrbV7y5p21rSmq1rubdLLLDfGaP+IA8h3vYrU3BL3sz2K1NwS97Me5KZ7CPeOW+FT+8y4lXbHcFlcRfZKfJ2Fe1luaUkJY1Jd3KjCMy0RvTgzxtW6/ZT6XhUmh2eNq3X7KfS8KkJ+nETAGIAAAAAAAAAAAAAA72geueH+alcF3tA9c8P81KPY60qAOkAAZ42rdfsp9LwqTQ7PG1br9lPpeFSGf04iYAxAAAAAAAAAAAAFj4rZNd5LF2d/LlqEkuWt5J4QjSjGMsJpZY7un/AGrhp3SHVPC/IUPDkF0iJ6rPmZvOM2/Yx83R07srusRnLLIz5SjVlxdWE0ZYUowjNu/t0rRBr+IABSNa21dR0lb2tWtaT3MMjNNCEJJ4S7t0IR/lE+eaz4NcdtDyNu/u7E/FqfaVToytaYlcXPNZ8GuO2h5K11dmZNQ6iu8rSozUZL/kbpJo74w5MkkOn/jjgibTPQASAAAAAAAAAAAANO6Q6p4X5Ch4cjMST2e0HVNlaULS2ynIoWFOWWSX8vSjyZYQ3QhvjJv6IC6WxowZ45ytX8X7rR9Bzlav4v3Wj6BfpDQ4zxzlav4v3Wj6DnK1fxfutH0B6Qm23f3difi1PtKp12M9qjNagp0qeYvPzEllGMZYfhSSbox6f6YQccZ2nZ0AEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z" width="50" height="50" style="position:relative;left:1px; top:-100px;"></a>
+
+
+
    </div>
    <br>
-   <div class="container text-center" >
-        <a class="btn btn-lg btn-outline-dark" href="{{ url_for('list_users') }}" > Click Here to view all users</a>
+   <div>
+       <div class="container text-center" >
+            <a class="btn btn-lg btn-outline-dark" href="{{ url_for('list_users') }}" > Click Here to view all users</a>
+            <a href="{{url_for('register')}}" class="btn btn-lg btn-outline-primary" style="text-align: center" >Register</a>
+            <a href="{{url_for('login')}}" class="btn btn-lg btn-outline-success" style="text-align: center">Log In</a>
+       </div>
    </div>
     <br>
     <br>
@@ -25,10 +32,10 @@
    <div class="container text-center">
   <div class="row" >
     <div class="col" >
-      <a href="https://www.imdb.com/title/tt9603212/" alt="Mission Impossible"><img src="https://m.media-amazon.com/images/M/MV5BNjRlZmM0ODktY2RjNS00ZDdjLWJhZGYtNDljNWZkMGM5MTg0XkEyXkFqcGdeQXVyNjAwMjI5MDk@._V1_FMjpg_UX1000_.jpg" width="200" height="300"></a>
+      <a href="https://www.imdb.com/title/tt5537002/?ref_=tt_mv_close" alt="Killers of a flower moon"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQfm721pYV7Q6k_AK75xhtKHxHKS8b2oQXA_uPLvxkXUgB4-S1H" width="200" height="300"></a>
     </div>
     <div class="col">
-        <a href="https://www.imdb.com/title/tt15398776/?ref_=nv_sr_srsg_0_tt_5_nm_3_q_op" alt="Oppenheimer"><img src="https://pbs.twimg.com/media/FvUVt3hXgAAxP1H?format=jpg&name=900x900" width="200" height="300"></a>
+        <a href="https://www.imdb.com/title/tt17024450/?ref_=nv_sr_srsg_0_tt_6_nm_2_q_the%2520eq" alt="The Equalizer"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/The_Equalizer_3_poster.jpg/220px-The_Equalizer_3_poster.jpg" width="200" height="300"></a>
     </div>
     <div class="col">
         <a href="https://www.imdb.com/title/tt9362722/?ref_=nv_sr_srsg_1_tt_7_nm_0_q_spider" alt="Spider-man"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQFHMCMi3SM6HVf0M-Ua0zLlXgBvdsyTT8JL47mVS58uxEaEPse" width="200" height="300"></a>

@@ -6,25 +6,45 @@
     <title>Welcome to MasterFlix</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body style="background-color:white;">
+<body>
+
     <div style="border:black; border-width:5px; border-style:solid width:100px;" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-        <h1 class="text-center text-black" style="text-align:left; padding-top:50px">Active Users</h1>
+        <h1 class="text-center text-black" style="text-align:left; padding-top:50px">REGISTER</h1>
          <a href="{{ url_for('home') }}"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkFDRYbEhEMDRsUFRAZIB0WLiAdJSgkHCggJh4lIh8eITUyJSkrLkYuHR80ODU4NzItLjIBCgoKDg0NDw4ODysZHxkrNysrKysrKysrKysrNysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALQAtAMBIgACEQEDEQH/xAAZAAEAAwEBAAAAAAAAAAAAAAAABgcIBQP/xAA2EAEAAAUBAwkGBQUAAAAAAAAAAQIDBAUGBxFVEhcxNpOks9HSFjVzdIOxExQhlMEyQVFhgf/EABgBAQEBAQEAAAAAAAAAAAAAAAACAwQB/8QAGxEBAAMBAQEBAAAAAAAAAAAAAAECETETAxL/2gAMAwEAAhEDEQA/AKzAS5QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWPsXxthkr7Jy5GytrqWhSkjLC4pSzwljvm6N8P0Wt7L6e4Di/2dPyFxTY1mIad9l9PcBxf7On5KI2l2tCy1rkrezoUrehQ/C5MlGSEksu+lSjHdCH6dMYhamIyAIAAAAAAAAAAAAAAAetrbV7y5p21rSmq1rubdLLLDfGaP+IA8h3vYrU3BL3sz2K1NwS97Me5KZ7CPeOW+FT+8y4lXbHcFlcRfZKfJ2Fe1luaUkJY1Jd3KjCMy0RvTgzxtW6/ZT6XhUmh2eNq3X7KfS8KkJ+nETAGIAAAAAAAAAAAAAA72geueH+alcF3tA9c8P81KPY60qAOkAAZ42rdfsp9LwqTQ7PG1br9lPpeFSGf04iYAxAAAAAAAAAAAAFj4rZNd5LF2d/LlqEkuWt5J4QjSjGMsJpZY7un/AGrhp3SHVPC/IUPDkF0iJ6rPmZvOM2/Yx83R07srusRnLLIz5SjVlxdWE0ZYUowjNu/t0rRBr+IABSNa21dR0lb2tWtaT3MMjNNCEJJ4S7t0IR/lE+eaz4NcdtDyNu/u7E/FqfaVToytaYlcXPNZ8GuO2h5K11dmZNQ6iu8rSozUZL/kbpJo74w5MkkOn/jjgibTPQASAAAAAAAAAAAANO6Q6p4X5Ch4cjMST2e0HVNlaULS2ynIoWFOWWSX8vSjyZYQ3QhvjJv6IC6WxowZ45ytX8X7rR9Bzlav4v3Wj6BfpDQ4zxzlav4v3Wj6DnK1fxfutH0B6Qm23f3difi1PtKp12M9qjNagp0qeYvPzEllGMZYfhSSbox6f6YQccZ2nZ0AEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z" width="50" height="50" style="position:relative;left:1px; top:-50px;"></a>
-        <a href="{{ url_for('dash')}}">
-        <svg style="position:fixed;right:150px; top:70px" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="primary" class="bi bi-person-circle" viewBox="0 0 16 16">
-          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-        </svg>
-        </a>
     </div>
-    <br>
-    <br>
-    <ul class="container text-center">
-        {% for user in users %}
-        <a class="btn btn-lg btn-outline-light text-black" href="{{url_for('list_movies' , user_id= user['id'])}}"> {{user.name}}</a><br><br>
-        <p></p>
-        {% endfor %}
-    </ul>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/register" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="text" id="name" name="name" class="form-control" id="floatingInput">
+                    <label for="name" class="form-label">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" id="username" name="username" class="form-control">
+                    <label for="username" class="form-label">User Name:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" id="password" name="password" class="form-control">
+                    <label for="password" class="form-label">Password:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+                    <label for="confirm_password" class="form-label">Confirm Password:</label>
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Register" class="btn btn-lg btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<h1> {{error}}</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 </body>
 </html>

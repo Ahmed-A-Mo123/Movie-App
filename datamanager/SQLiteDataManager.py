@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, create_engine, ForeignKey, and_
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship, backref
+from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
 from sqlalchemy.orm.exc import NoResultFound
+from flask_login import UserMixin
 
 from datamanager.manager import DataManagerInterface
 import requests
@@ -11,10 +12,12 @@ Base = declarative_base()
 API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=e9c4608d&t='
 
 
-class Users(Base):
+class Users(Base, UserMixin):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(255))
+    username = Column(String(20), unique=True)
+    password = Column(String(20))
 
 
 class Movies(Base):
@@ -44,7 +47,7 @@ class Reviews(Base):
 class SQLiteDataManager(DataManagerInterface):
     def __init__(self, file_name):
         self.engine = create_engine(f'sqlite:///datamanager//{file_name}')
-        self.Session = sessionmaker(bind=self.engine)
+        self.Session = scoped_session(sessionmaker(bind=self.engine))
         Base.metadata.create_all(self.engine)
 
     @staticmethod
@@ -56,6 +59,20 @@ class SQLiteDataManager(DataManagerInterface):
             raise ValueError("Cannot divide by zero")
         return response.json()
 
+    def get_user_by_id(self, user_id):
+        session = self.Session()
+        try:
+            return session.query(Users).get(int(user_id))
+        finally:
+            session.close()
+
+    def get_user_by_username(self, user_name):
+        session = self.Session()
+        try:
+            return session.query(Users).filter_by(username=user_name).first()
+        finally:
+            session.close()
+
     def check_if_user_exist(self, user_id):
         """This is a helper function which tells me if a user exists or not"""
         session = self.Session()
@@ -66,6 +83,17 @@ class SQLiteDataManager(DataManagerInterface):
             return True  # User DOESN'T exits
         else:
             return False  # User DOES exits
+
+    # def check_if_user_exist_username(self, user_name):
+    #     """This is a helper function which tells me if a user exists or not"""
+    #     session = self.Session()
+    #     user_search = session.query(Users). \
+    #         filter(and_(Users.username == user_name)). \
+    #         first()
+    #     if user_search is None:
+    #         return True  # User DOESN'T exits
+    #     else:
+    #         return False  # User DOES exits
 
     def get_all_users(self):
         """ Returns all the users in our Database"""
@@ -111,10 +139,10 @@ class SQLiteDataManager(DataManagerInterface):
 
         return 'User or Movie Not Found!'
 
-    def add_new_user(self, new_user):
+    def add_new_user(self, new_user_dict: dict):
         """Adds a new user to the webapp"""
         session = self.Session()
-        new_user = Users(name=new_user)
+        new_user = Users(name=new_user_dict['name'], username=new_user_dict['username'], password=new_user_dict['password'])
         session.add(new_user)
         session.commit()
         session.close()
