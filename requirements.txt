@@ -21,7 +21,7 @@ debugpy==1.6.7
 decorator==5.1.1
 distlib==0.3.6
 docx==0.2.4
-docx2python==2.6.0
+docx2python==2.0.4
 exceptiongroup==1.1.1
 executing==1.2.0
 fastapi==0.103.1
