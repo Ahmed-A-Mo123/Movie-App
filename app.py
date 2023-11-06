@@ -165,5 +165,5 @@ def delete_movie(user_id, movie_id):
     return render_template('delete_movie.html', movie=movie, current_user=user_id)
 
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5003)
+# if __name__ == '__main__':
+    # app.run(host='127.0.0.1', port=5003)
